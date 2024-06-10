@@ -1,0 +1,119 @@
+CREATE DATABASE mynew_db
+
+CREATE TABLE first_table(
+id int(11) AUTO_INCREMENT PRIMARY KEY,
+Name varchar(30),
+Email varchar(50) UNIQUE,
+CNIC varchar (13),
+DOB date,
+Date timestamp
+)
+
+-- DDL Operations (with table and column)
+
+-- ALTER 
+-- 1. add
+ALTER TABLE first_table add UNIQUE(CNIC)
+ALTER TABLE first_table add Phone_no int(20) 
+ALTER TABLE first_table ADD age varchar(30) 
+ALTER TABLE first_table ADD CNIC int(13)
+ALTER TABLE first_table ADD UNIQUE (CNIC)
+ALTER TABLE first_table ADD PRIMARY KEY(id)
+
+
+-- 2. drop
+ALTER TABLE first_table DROP Phone_no
+ALTER TABLE first_table DROP CNIC
+ALTER TABLE first_table DROP id
+-- ALTER TABLE `first_table` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE first_table add id int (11) PRIMARY KEY
+
+
+-- 1. TRUNCATE
+TRUNCATE TABLE first_table --(sara data delete ho jaye ga)
+
+-- 2. DROP table
+DROP TABLE practice --(table name)
+DROP DATABASE delete_db --(database name)
+
+
+-- 3. RENAME table
+RENAME TABLE first_table to users --(rename krna name)
+RENAME TABLE users to first_table
+
+-- DML Operations (with data and rows)
+-- INSERT
+-- SELECT
+SELECT * FROM first_table -- (all data)
+SELECT Name, age, id FROM first_table
+
+-- where clause:
+SELECT Name, age, id FROM first_table WHERE id = 2
+SELECT id, Name,Email, Password FROM php_form
+SELECT id, Name,Email, Password FROM php_form WHERE id = 7
+SELECT * FROM first_table where id != 3
+SELECT* FROM first_table WHERE id IN (3,5)
+SELECT* FROM first_table WHERE id NOT IN (3,5)
+SELECT * FROM first_table WHERE Name = "waleed" OR Name = "arooba"
+
+--deltedata of single row:
+DELETE FROM first_table WHERE Name = 'arooba'
+DELETE FROM first_table WHERE id in(3) --(kardo)
+DELETE FROM first_table WHERE id NOT in(5) --(chordo delete mat karo)
+
+
+--UPDATE
+
+UPDATE first_table SET Name = "sara" WHERE id = 6
+UPDATE first_table SET Name = 'Aryan', Email = 'aryan@gmail.com' WHERE id = 2 
+UPDATE first_table SET age = 23 WHERE id in (2,4,6)
+
+
+-- between caluse
+
+
+ UPDATE first_table SET adress = 'DHA' WHERE id = 1 --(add data in new column)
+ SELECT * from first_table WHERE id BETWEEN 1 and 4 OR adress = 'saddar'
+
+ --limit
+ SELECT * from first_table WHERE id LIMIT 2
+
+ -- order by clase
+SELECT * FROM first_table ORDER BY  id ASC LIMIT 4  
+SELECT * from first_table ORDER BY id DESC LIMIT 3
+
+
+--AS keyword:
+
+SELECT Name AS 'std_name', Email, DOB, DOB, age, id, adress FROM first_table
+SELECT Name AS 'my_name', Email AS 'my_email', DOB, Date, age, id, adress FROM first_table
+SELECT Name,(salry + bonus) AS 'Grand_salry' FROM 
+
+--like 
+ -- 1. Exact match
+SELECT * FROM first_table WHERE Name LIKE  "sara"
+
+--Start match A% agar start mn a ho
+SELECT * FROM first_table WHERE Name LIKE  "A%"
+
+--End match A% agar end mn a ho
+SELECT * FROM first_table WHERE Name LIKE  "%A"
+
+--End match A% wo word kahin bhi ho wahan se match karega
+SELECT * FROM first_table WHERE Name LIKE  "%m%"
+SELECT * FROM first_table WHERE Name LIKE  "%a%" AND adress LIKE 'saddar'
+
+-- Foriegn key:
+
+
+--aggregate functions
+
+SELECT COUNT(id) from first_table where fees >5000
+SELECT sum(fees) from first_table
+SELECT avg(fees) from first_table
+SELECT min(fees) from first_table
+SELECT max(fees) from first_table
+SELECT COUNT(id), adress FROM first_table GROUP BY adress
+
+
+
